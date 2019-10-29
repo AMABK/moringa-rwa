@@ -36,20 +36,9 @@ class NotificationController extends Controller {
                         'body' => 'You are currently <b> ' . $status . ' </b> in your progress for the ' . $res->results[$i]->name . ' module.'
                     ];
                     // notify the student of the current status for the module
-                    $this->updateStudentNotification($student_id, $payload);
+                    $this->notifyStudentsMidModule($student_id, $payload);
                 }
             }
-        }
-    }
-
-    public function checkIfMidDateReached($start_date, $end_date) {
-        //get the mid date of the module start date and end date
-        $midPoint = (strtotime($start_date) + strtotime($end_date)) / 2;
-        //if todat is middate, return true, else false
-        if ($midPoint === strtotime(date('d/m/Y'))) {
-            return true;
-        } else {
-            return false;
         }
     }
 
@@ -71,13 +60,22 @@ class NotificationController extends Controller {
         return $progression;
     }
 
-    public function updateStudentNotification($student_id,$payload) {
-        // make http call to send student notifications
+    public function notifyStudentsMidModule($student_id,$payload) {
+        // make http call to notify students mid-module
         $client = new Client();
         $client->put($this->apiUrl.'/notifications/'.$student_id, [
             'headers' => ['content-type' => 'application/json'],
         ], json_encode($payload));
         
     }
-
+    public function checkIfMidDateReached($start_date, $end_date) {
+        //get the mid date of the module start date and end date
+        $midPoint = (strtotime($start_date) + strtotime($end_date)) / 2;
+        //if todat is middate, return true, else false
+        if ($midPoint === strtotime(date('d/m/Y'))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
