@@ -29,7 +29,7 @@ The following fuctions are contained in this controller
 * checkStudentModuleStatus() - Its the entry point for this app. The functions calls other necessary functions to achieve its goals
 * getLiveModules() - Gets all live modules
 * getProgression($module_id, $student_id) - Gets progress status of student
-* updateStudentNotification($student_id,$payload) - make the API call that sends the message to the student
+* notifyStudentsMidModule($student_id,$payload) - Makes the API call that sends the message to notify students mid-module
 * checkIfMidDateReached($start_date, $end_date) - Checks if the module has reached mid date
 
 To ensure that the application checks automatically each day if there are any notifications to send, we set up a scheduler
