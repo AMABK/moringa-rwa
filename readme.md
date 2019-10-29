@@ -23,7 +23,7 @@ curl -sS https://getcomposer.org/installer | php
 ```
 Enviroment file ```.env``` contains sensitive config info. A sample copy is stored as ```.env.example```
 
-# App structure
+# App structure and design
 Functions that make call to the API and carry out the logic are located are in ```App\Http\Controllers\NotificationController.php```
 The following fuctions are contained in this controller
 * checkStudentModuleStatus() - Its the entry point for this app. The functions calls other necessary functions to achieve its goals
