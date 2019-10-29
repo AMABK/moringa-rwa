@@ -32,11 +32,9 @@ The following fuctions are contained in this controller
 * notifyStudentsMidModule($student_id,$payload) - Makes the API call that sends the message to notify students mid-module
 * checkIfMidDateReached($start_date, $end_date) - Checks if the module has reached mid date
 
-To ensure that the application checks automatically each day if there are any notifications to send, we set up a scheduler
-Create a new command class called ```daily``` in the ```app/Console/Commands``` directory.  Name the scheduled artisan command ```daily:update```
-Instantiate ```NotificationController{}``` class and call the method ```checkStudentModuleStatus()``` in the handle method of class daily
-We then define our scheduled task in the schedule method of the App\Console\Kernel class. and set it to run once daily.
+To ensure that the application checks automatically each day if there are any notifications to send, a scheduler is set up
+We create a new command class called ```daily``` in the ```app/Console/Commands``` directory and name the scheduled artisan command ```daily:update```
+We then instantiate ```NotificationController{}``` class and call the method ```checkStudentModuleStatus()``` in the handle method of class ```daily```.
+We then define our scheduled task in the schedule method of the ```App\Console\Kernel class``` and set it to run once daily.
 
-NOTE: When using the scheduler, you only need to add the following Cron entry to your server. ```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```(This is set up once for each project irrespective of the number of scheduled jobs)
-
-
+NOTE: When using the scheduler, we only need to add the following Cron entry to your server. ```* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1```(This is set up once for each project irrespective of the number of scheduled jobs)
